@@ -28,13 +28,18 @@ namespace DapperTime.DATA
         sb.Append("INSERT INTO dbo.Employee(first_name,last_name,address,home_phone,cell_phone) ");
         sb.Append("VALUES (@FirstName, @LastName, @Address, @HomePhone, @CellPhone)");
         conn.Execute(sb.ToString(),
-          new { emp.FirstName, emp.LastName, emp.Address, emp.HomePhone, emp.CellPhone });          
+          new { emp.FirstName, emp.LastName, emp.Address, emp.HomePhone, emp.CellPhone });
       }
     }
 
     public void Delete(int employeeId)
     {
-      throw new System.NotImplementedException();
+      using (var conn = new SqlConnection(connString))
+      {
+        StringBuilder sb = new StringBuilder("DELETE FROM Employee WHERE id=@Id");
+        conn.Execute(sb.ToString(),
+            new { Id = employeeId });
+      }
     }
 
     public void Update(Employee employee)
@@ -48,7 +53,7 @@ namespace DapperTime.DATA
         sb.Append("WHERE id=@Id");
         conn.Execute(sb.ToString(),
             new { employee.FirstName, employee.LastName, employee.Address, employee.HomePhone, employee.CellPhone, employee.Id });
-    }
+      }
     }
   }
 }
