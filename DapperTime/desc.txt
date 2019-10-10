@@ -27,6 +27,7 @@ Database
       SET ANSI_PADDING OFF
       GO
 
+
 I will add the Dapper nuget package into the “DapperTime.DATA” project 
 using the nuget package manager.
     cd DapperTime.DATA\
@@ -46,4 +47,5 @@ I have a follow posiibility:
 I Use'd this reference to using a SqlServer:
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6"/>
+
 
