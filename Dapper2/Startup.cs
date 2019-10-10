@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper2.Services;
+using Dapper2.Services.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +29,8 @@ namespace Dapper2
     {
       // services.AddTransient<IEmployeeProvider>(f => 
       //     new EmployeeProvider(Configuration.GetConnectionString("DefaultConnection")));
+      services.AddTransient<IProductRepository, ProductRepository>();
+      services.AddTransient<ICommandText, CommandText>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
     }
 
