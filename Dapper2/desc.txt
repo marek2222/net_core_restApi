@@ -1,0 +1,57 @@
+Building Restful API with ASP.Net Core and Dapper
+Oğuz Berkay Yerdelen
+https://medium.com/@berkayyerdelen/building-restful-api-with-dapper-and-asp-net-core-37e6d9d1bdda
+
+Database
+  Create a database named “TestDapper”. After that, inside the database 
+  I will create a table named Product. 
+	
+      USE [TestDapper]
+      GO
+      /****** Object:  Table [dbo].[Employee]    Script Date: 2019-10-10 08:05:18 ******/
+      SET ANSI_NULLS ON
+      GO
+      SET QUOTED_IDENTIFIER ON
+      GO
+      SET ANSI_PADDING ON
+      GO
+
+        CREATE TABLE [dbo].[Product](
+            [Id] [int] IDENTITY(1,1) NOT NULL,
+            [Name] [nvarchar](50) NULL,
+            [Cost] [float] NULL,
+            [CreatedDate] [datetime] NULL,
+        CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
+        (
+            [Id] ASC
+        )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+        ) ON [PRIMARY]
+        GO
+      SET ANSI_PADDING OFF
+      GO
+
+
+I will add the Dapper nuget package into project 
+    dotnet add package Dapper --version 2.0.30
+
+I have a follow posiibility: 
+    <PackageReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="2.2.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6"/>
+    <PackageReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4"/>
+
+
+I Use'd this reference to using a SqlServer:
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6"/>
+
+I add a reference to DapperTime.API:
+cd .. 
+cd DapperTime.API\
+dotnet add reference ../DapperTime.DATA/DapperTime.DATA.csproj
+
+
