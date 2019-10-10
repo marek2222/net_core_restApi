@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using System.Text;
 using Dapper;
 
 namespace DapperTime.DATA
@@ -18,18 +19,19 @@ namespace DapperTime.DATA
     {
       this.connString = connString;
     }
- 
+
     public void Create(Employee emp)
     {
       using (var conn = new SqlConnection(connString))
       {
-        // connection.Execute("INSERT INTO Employee (first_name, last_name, address, home_phone, cell_phone) VALUES (@FirstName, @LastName, @Address, @HomePhone, @CellPhone)",
-        // new { employee.FirstName, employee.LastName, employee.Address, employee.HomePhone, employee.CellPhone });
-        conn.Execute("INSERT INTO dbo.Employee(first_name,last_name,address,home_phone,cell_phone) VALUES (@FirstName, @LastName, @Address, @HomePhone, @CellPhone)",
-                      new { emp.FirstName, emp.LastName, emp.Address, emp.HomePhone, emp.CellPhone });          
+        StringBuilder sb = new StringBuilder();
+        sb.Append("INSERT INTO dbo.Employee(first_name,last_name,address,home_phone,cell_phone) ");
+        sb.Append("VALUES (@FirstName, @LastName, @Address, @HomePhone, @CellPhone)");
+        conn.Execute(sb.ToString(),
+          new { emp.FirstName, emp.LastName, emp.Address, emp.HomePhone, emp.CellPhone });          
       }
     }
-    
+
     public void Delete(int employeeId)
     {
       throw new System.NotImplementedException();
@@ -37,7 +39,16 @@ namespace DapperTime.DATA
 
     public void Update(Employee employee)
     {
-      throw new System.NotImplementedException();
+      using (var conn = new SqlConnection(connString))
+      {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("UPDATE Employee ");
+        sb.Append("SET first_name=@FirstName, last_name=@LastName, address=@Address,");
+        sb.Append("     home_phone=@HomePhone, cell_phone=@CellPhone ");
+        sb.Append("WHERE id=@Id");
+        conn.Execute(sb.ToString(),
+            new { employee.FirstName, employee.LastName, employee.Address, employee.HomePhone, employee.CellPhone, employee.Id });
+    }
     }
   }
 }
