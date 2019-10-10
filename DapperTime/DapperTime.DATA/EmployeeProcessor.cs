@@ -25,7 +25,7 @@ namespace DapperTime.DATA
       using (var conn = new SqlConnection(connString))
       {
         StringBuilder sb = new StringBuilder();
-        sb.Append("INSERT INTO dbo.Employee(first_name,last_name,address,home_phone,cell_phone) ");
+        sb.Append("INSERT INTO Employee (first_name, last_name, address, home_phone, cell_phone) ");
         sb.Append("VALUES (@FirstName, @LastName, @Address, @HomePhone, @CellPhone)");
         conn.Execute(sb.ToString(),
           new { emp.FirstName, emp.LastName, emp.Address, emp.HomePhone, emp.CellPhone });
