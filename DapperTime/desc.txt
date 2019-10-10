@@ -32,3 +32,18 @@ using the nuget package manager.
     cd DapperTime.DATA\
     dotnet add package Dapper --version 2.0.30
 
+I have a follow posiibility: 
+    <PackageReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="2.2.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6"/>
+    <PackageReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4"/>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4"/>
+
+
+I Use'd this reference to using a SqlServer:
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6"/>
+
