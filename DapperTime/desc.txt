@@ -1,0 +1,34 @@
+Database
+  Create a database named “TestDapper”. After that, inside the database 
+  I will create a table named “Employee”. The table Employee has only 
+  five columns for simplicity. The columns are:
+  First Name, Last Name, Address, Home Phone and Cell Phone.
+
+      USE [TestDapper]
+      GO
+      /****** Object:  Table [dbo].[Employee]    Script Date: 2019-10-10 08:05:18 ******/
+      SET ANSI_NULLS ON
+      GO
+      SET QUOTED_IDENTIFIER ON
+      GO
+      SET ANSI_PADDING ON
+      GO
+
+      CREATE TABLE [dbo].[Employee](
+        [id] [int] NOT NULL,
+        [first_name] [varchar](100) NOT NULL,
+        [last_name] [varchar](100) NOT NULL,
+        [address] [varchar](max) NOT NULL,
+        [home_phone] [varchar](50) NULL,
+        [cell_phone] [varchar](50) NULL
+      ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+      GO
+
+      SET ANSI_PADDING OFF
+      GO
+
+I will add the Dapper nuget package into the “DapperTime.DATA” project 
+using the nuget package manager.
+    cd DapperTime.DATA\
+    dotnet add package Dapper --version 2.0.30
+
