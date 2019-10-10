@@ -11,21 +11,26 @@ namespace Dapper2.Services
 {
   public class ProductRepository : IProductRepository
   {
-    private readonly ICommandText _commandText;
+    private readonly ICommandText _cmd;
     private readonly string _connStr;
-    public ProductRepository(IConfiguration configuration, ICommandText commandText)
+    public ProductRepository(IConfiguration config, ICommandText cmd)
     {
-      _commandText = commandText;
-      _connStr = configuration.GetConnectionString("DefaultConnection");
+      _cmd = cmd;
+      _connStr = config.GetConnectionString("DefaultConnection");
     }
 
 
     public List<Product> GetAllProducts()
     {
-      var query = ExecuteCommand(_connStr,
-             conn => conn.Query<Product>(_commandText.GetProducts)).ToList();
+      // using (var conn = new SqlConnection(connStr))
+      // {
+      //     conn.Open();
+      //     task(conn => conn.Query<Product>(_cmd.GetAllProducts)).ToList;
+      // }
+      var query = ExecuteCommand(_connStr, conn => conn.Query<Product>(_cmd.GetAllProducts)).ToList();
       return query;
     }
+
     public Product GetById(int id)
     {
       var product = ExecuteCommand<Product>(_connStr, conn =>
