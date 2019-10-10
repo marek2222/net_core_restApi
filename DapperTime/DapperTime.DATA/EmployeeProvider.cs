@@ -23,7 +23,6 @@ namespace DapperTime.DATA
   public class EmployeeProvider : IEmployeeProvider
   {
     private readonly string connectionString;
-
     public EmployeeProvider(string connectionString)
     {
       this.connectionString = connectionString;
@@ -37,7 +36,6 @@ namespace DapperTime.DATA
       {
         employee = connection.Query<Employee>("select id, first_name as FirstName, last_name as LastName, address, home_phone as HomePhone, cell_phone as CellPhone from Employee");
       }
-
       return employee;
     }
   }
